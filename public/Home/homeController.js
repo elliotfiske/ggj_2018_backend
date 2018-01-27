@@ -2,14 +2,9 @@ app.controller('homeController', ['$scope', '$state', '$rootScope', 'api', 'toas
    $rootScope.page = 'home';
 
    // Get courses and available courses
-   API.logEntry.get().then(function(response) {
-      scope.generations = [];
-      response.data.forEach(function(logEntry) {
-         if (scope.generations[logEntry.generation] === undefined) {
-            scope.generations[logEntry.generation] = [];
-         }
-         scope.generations[logEntry.generation].push(logEntry);
-      });
+   API.deathEntry.get().then(function(response) {
+      scope.deaths = response.data;
+      
    })
    .catch(toastr.doErrorMessage(function(err) {}));;
 }])

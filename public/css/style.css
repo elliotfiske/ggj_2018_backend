@@ -331,3 +331,9 @@ body {
     width: 454px;
   }
 }
+
+/* STUFF FOR GLOBAL GAME JAM 2018 */
+
+.table td.numerical {
+    text-align: right;
+}

@@ -52,6 +52,16 @@ app.get('/logEntry', function(req, res) {
    });
 });
 
+app.get('/deathEntry', function(req, res) {
+   return sequelize.DeathEntry.findAll()
+   .then(function(logs) {
+      return res.json(logs);
+   })
+   .catch(function(err) {
+      res.json({"ERROR" : JSON.stringify(err)});
+   });
+});
+
 app.put('/logEntry', function(req, res) {
    return sequelize.LogEntry.findById(req.body.id)
    .then(function(logEntry) {

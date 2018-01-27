@@ -1,15 +1,25 @@
 <div class="container-white">
-   <div class="row">
-      <div class="panel panel-success" ng-repeat="gen in generations">
-         <div class="panel-heading">
-            <h2 class="panel-title">Generation {{$index}}</h2>
-         </div>
-         <div class="panel-body list-group">
-            <div class="row list-group-item" ng-repeat="logEntry in gen">
-               <b>{{logEntry.score}}</b> from <i>{{logEntry.chromosome}}</i>
-               <span class="pull-right">By: {{logEntry.botId}}</span>
-            </div>
-         </div>
-      </div>
-   </div>
+    <div class="row">
+        <h1 class="col-xs-12">Deaths so far</h1>
+        <table class="table table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">X</th>
+                    <th scope="col">Y</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="deathEntry in deaths">
+                    <th>{{$index+1}}</th>
+                    <td>{{deathEntry.xPos}}</td>
+                    <td>{{deathEntry.yPos}}</td>
+                    <td>{{deathEntry.username}}</td>
+                    <td>{{deathEntry.message}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

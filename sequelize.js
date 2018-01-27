@@ -42,30 +42,46 @@ var LogEntry = sequelize.define('LogEntry', {
    freezeTableName: true
 });
 
+var DeathEntry = sequelize.define('DeathEntry', {
+    username: {
+        type: Sequelize.STRING,
+        default: "larry"
+    },
+    xPos: {
+        type: Sequelize.INTEGER
+    },
+    yPos: {
+        type: Sequelize.INTEGER
+    },
+    message: {
+        type: Sequelize.STRING
+    }
+}, {
+    freezeTableName: true
+});
+
+
 sequelize.sync().then(function() {
-   return LogEntry.findAll();
+   return DeathEntry.findAll();
 })
 .then(function(entries) {
-   // No entries! Let's seed the population
-   population = [];
+    // Just for funzies
+   var premade_entries = [];
    if (entries.length === 0) {
-      // Generate 200 random 55-bit strings of 0s or 1s!
-      for (var i = 0; i < 200; i++) {
-         chromosome = '';
-         for (var j = 0; j < 55; j++) {
-            num = Math.floor(Math.random()*(1-0+1)+0);
-            chromosome += num.toString();
-         }
-         population.push({chromosome: chromosome, generation: 0, score: -1});
-      }
+      // Put in some funni death message for the lulz      
+     premade_entries.push({username: "dat_dead_boi", xPos: 1, yPos: 10, message: "I DIED LOL"});
+     premade_entries.push({username: "dat_dead_boi", xPos: 1, yPos: 5, message: "I DIED AGAIN LOL"});
+     premade_entries.push({username: "old_man", xPos: -1, yPos: -100, message: "excuse me i am lost and alone."});
+     premade_entries.push({username: "old_man", xPos: -1, yPos: -101, message: "have you seen my son?"});
    }
-   return LogEntry.bulkCreate(population);
+   return DeathEntry.bulkCreate(premade_entries);
 })
 .catch(function(err) {
    console.error("EXTREMELY UNLIKELY ERROR DETECTED " + JSON.stringify(err.message), err.stack);
 });
 
 module.exports = {
+   DeathEntry: DeathEntry,
    LogEntry: LogEntry,
    do: sequelize
 };
