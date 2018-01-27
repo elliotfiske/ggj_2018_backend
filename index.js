@@ -93,3 +93,7 @@ app.get('/chromosomeToScore', function(req, res) {
       res.json({"ERROR" : JSON.stringify(err) + err.message});
    });
 });
+
+app.put('/fart', function(req, res, next) {
+    next();
+});
