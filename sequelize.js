@@ -12,7 +12,7 @@ var host = env.CLEARDB_HOST || poolCfg.host;
 var sequelize = new Sequelize(db, username, pass, {
   host: host,
   dialect: 'mysql',
-
+ 
   pool: {
     max: 5,
     min: 0,
